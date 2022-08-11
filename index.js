@@ -35,7 +35,7 @@ app.post('/api/iller', (req, res) => {
         return res.status(400).send('aranan il en az 3 karaktere sahip olmali')
     }
 
-    // ayni il mevcutsa ekleme
+    // ayni plakalı veya isimli il mevcutsa ekleme
     const ilAd = iller.find(i => i.ilAdi === (req.body.ilAdi))
     if (!ilAd && !iller.find(i => i.plaka === parseInt(req.body.plaka))) {
         const ilEkle = {
@@ -76,32 +76,5 @@ app.delete('/api/iller/:plaka', (req, res) => {
 })
 
 
-
-
-
 const port = 3040
 app.listen(port, () => console.log(`${port} numarali port dinleniyor..`))
-
-
-
-
-
-
-// //POST
-// app.post('/api/iller', (req, res) => {
-//     if (!req.body.ilAdi || req.body.ilAdi.length < 3) {
-//         return res.status(400).send('aranan il en az 3 karaktere sahip olmali')
-//     }
-
-//     // ayni il mevcutsa ekleme
-//     const il = iller.find(i => i.plaka === parseInt(req.params.plaka))
-//     if (il) res.status(404).send('zaten mevcut')
-
-
-//     const ilEkle = {
-//         ilAdi: req.body.ilAdi,
-//         plaka: req.body.plaka
-//     }
-//     iller.push(ilEkle)
-//     res.send(ilEkle)
-// })
