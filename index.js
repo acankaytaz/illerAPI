@@ -14,18 +14,18 @@ const iller = [{
 ]
 
 app.get('/', (req, res) => {
-    res.send('welcome!')
+    res.json('welcome!')
 })
 
 //GET
 app.get('/api/iller', (req, res) => {
-    res.send(iller)
+    res.json(iller)
 })
 
 app.get('/api/iller/:plaka', (req, res) => {
     const il = iller.find(i => i.plaka === parseInt(req.params.plaka))
     if (!il) res.status(404).send('Aranan plaka numarali sehir bulunamadi')
-    res.send(il)
+    res.json(il)
 })
 
 //POST
@@ -43,7 +43,7 @@ app.post('/api/iller', (req, res) => {
             ilAdi: req.body.ilAdi
         }
         iller.push(ilEkle)
-        res.send(ilEkle)
+        res.json(ilEkle)
     } else {
         return res.status(404).send('bu il zaten mevcut')
     }
@@ -59,7 +59,7 @@ app.put('/api/iller/:plaka', (req, res) => {
     }
 
     il.ilAdi = req.body.ilAdi;
-    res.send(il)
+    res.json(il)
 
 })
 
@@ -71,7 +71,7 @@ app.delete('/api/iller/:plaka', (req, res) => {
     const index = iller.indexOf(il)
     iller.splice(index, 1)
 
-    res.send(il)
+    res.json(il)
 
 })
 
